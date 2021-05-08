@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Contact manager app",
   "main": "server.js",
-  "type":"module",
-  "scripts": {
+    "scripts": {
     "start":"node server.js",
     "server":"nodemon server.js"
 
