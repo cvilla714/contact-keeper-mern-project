@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "Contact manager app",
   "main": "server.js",
-    "scripts": {
-    "start":"node server.js",
-    "server":"nodemon server.js"
-
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "Cosmel Villalobos",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
+    "dotenv": "^9.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.10.1",
     "jsonwebtoken": "^8.5.1",
