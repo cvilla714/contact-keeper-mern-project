@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+// const express = require('express');
 const router = express.Router();
 
 //@route    POST api/users
@@ -8,4 +9,5 @@ router.post('/', (req, res) => {
   res.send('Register a user');
 });
 
-module.exports = router;
+export default router;
+// module.exports = router;

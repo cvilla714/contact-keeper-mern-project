@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+// const express = require('express');
 const router = express.Router();
 
 //@route    GET api/contacts
@@ -29,5 +30,5 @@ router.delete('/:id', (req, res) => {
   res.send('Delete contact');
 });
 
-// export default router;
-module.exports = router;
+export default router;
+// module.exports = router;
