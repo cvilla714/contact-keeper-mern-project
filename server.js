@@ -11,6 +11,9 @@ import contactsRoutes from './routes/contacts.js';
 // Connect Database
 connectDB();
 
+// Init Middleware
+app.use(express.json({ extended: false }));
+
 // app.get('/', (req, res) => res.send('Hello World'));
 app.get('/', (req, res) => res.json({ msg: 'Welcome to the ContactKeeper API' }));
 
