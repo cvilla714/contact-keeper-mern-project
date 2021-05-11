@@ -14,8 +14,15 @@ const jwtSecret = process.env.JWT_SECRET;
 //@route    GET api/auth
 //@desc     Get logged in user
 //@access   Private  because you need authentication
-router.get('/', checkToken, (req, res) => {
-  res.send('Get logged in user');
+router.get('/', checkToken, async (req, res) => {
+  // res.send('Get logged in user');
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 //@route    POST api/auth
