@@ -4,6 +4,11 @@ const router = express.Router();
 import User from '../models/User.js';
 import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+const lb = dotenv.config();
+const jwtSecret = process.env.JWT_SECRET;
 
 //@route    POST api/users
 //@desc     Register a user
@@ -44,7 +49,24 @@ router.post(
 
       await user.save();
 
-      res.send('User saved');
+      // res.send('User saved');
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        jwtSecret,
+        {
+          expiresIn: 3600,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');
