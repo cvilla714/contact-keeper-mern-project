@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 
 const lb = dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
+// console.log(jwtSecret);
 
 //@route    POST api/users
 //@desc     Register a user
@@ -60,7 +61,7 @@ router.post(
         payload,
         jwtSecret,
         {
-          expiresIn: 3600,
+          expiresIn: 360000,
         },
         (err, token) => {
           if (err) throw err;
