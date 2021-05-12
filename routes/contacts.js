@@ -84,6 +84,7 @@ router.put('/:id', checkToken, async (req, res) => {
       { $set: contactFields },
       { new: true }
     );
+    res.json(contact);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');
