@@ -12,7 +12,7 @@ const Register = () => {
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
-  const onSubmi = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log('Register submit');
   };
@@ -22,7 +22,7 @@ const Register = () => {
       <h1>
         Account <span className="text-primary">Register</span>
       </h1>
-      <form onSubmi={onSubmi}>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" value={name} onChange={onChange} />
