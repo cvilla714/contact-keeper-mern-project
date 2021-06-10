@@ -1,5 +1,16 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_CONTACT, DELETE_CONTACT, SET_CURRENT, CLEAR_CURRENT, UPDATE_CONTACT, FILTER_CONTACTS, CLEAR_FILTER, CONTACT_ERROR, GET_CONTACT } from '../types';
+import {
+  ADD_CONTACT,
+  DELETE_CONTACT,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+  UPDATE_CONTACT,
+  FILTER_CONTACTS,
+  CLEAR_FILTER,
+  CONTACT_ERROR,
+  GET_CONTACT,
+  CLEAR_CONTACTS,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -18,14 +29,26 @@ export default (state, action) => {
     case UPDATE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.map((contact) => (contact.id === action.payload.id ? action.payload : contact)),
+        contacts: state.contacts.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact,
+        ),
         loading: false,
       };
     case DELETE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.filter((contact) => contact.id !== action.payload),
+        contacts: state.contacts.filter(
+          (contact) => contact.id !== action.payload,
+        ),
         loading: false,
+      };
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        current: null,
       };
     case SET_CURRENT:
       return {
