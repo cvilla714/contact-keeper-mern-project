@@ -35,7 +35,6 @@ const App = () => {
                   <Route exact path="/login" component={Login} />
                 </Switch>
               </div>
-              My App
             </Fragment>
           </Router>
         </AlertState>
