@@ -7,11 +7,11 @@ const ContactItem = ({ contact }) => {
 
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const onDelete = () => {
     // contactContext.deleteContact(contact.id);
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
 
@@ -25,7 +25,10 @@ const ContactItem = ({ contact }) => {
         {name}{' '}
         <span
           style={{ float: 'right' }}
-          className={'badge ' + (type === 'professional' ? 'badge-success' : 'badge-primary')}
+          className={
+            'badge ' +
+            (type === 'professional' ? 'badge-success' : 'badge-primary')
+          }
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
