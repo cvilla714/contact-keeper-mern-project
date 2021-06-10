@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client":"npm start --prefix client",
-    "client-install":"npm install --prefix client",
-    "dev":"concurrently  \"npm run server\" \"npm run client\""
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently  \"npm run server\" \"npm run client\""
   },
   "author": "Cosmel Villalobos",
   "license": "ISC",
