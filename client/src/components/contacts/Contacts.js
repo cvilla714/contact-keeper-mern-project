@@ -11,13 +11,7 @@ const Contacts = () => {
     return <h4>Please add a contact</h4>;
   }
 
-  return (
-    <Fragment>
-      {filtered !== null
-        ? filtered.map((contact) => <ContactItem key={contact.id} contact={contact} />)
-        : contacts.map((contact) => <ContactItem key={contact.id} contact={contact} />)}
-    </Fragment>
-  );
+  return <Fragment>{filtered !== null ? filtered.map((contact) => <ContactItem key={contact._id} contact={contact} />) : contacts.map((contact) => <ContactItem key={contact._id} contact={contact} />)}</Fragment>;
 };
 
 export default Contacts;
