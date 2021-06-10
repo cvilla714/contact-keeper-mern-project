@@ -4,6 +4,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 // const connectDB = require('./config/db');
 import connectDB from './config/db.js';
+import path from 'path';
+// const path = require('path');
 import usersRoutes from './routes/users.js';
 import authRoutes from './routes/auth.js';
 import contactsRoutes from './routes/contacts.js';
@@ -15,7 +17,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // app.get('/', (req, res) => res.send('Hello World'));
-app.get('/', (req, res) => res.json({ msg: 'Welcome to the ContactKeeper API' }));
+// app.get('/', (req, res) => res.json({ msg: 'Welcome to the ContactKeeper API' }));
 
 //Define routes
 // app.use('/api/users', require('./routes/users'));
@@ -24,5 +26,15 @@ app.get('/', (req, res) => res.json({ msg: 'Welcome to the ContactKeeper API' })
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/contacts', contactsRoutes);
+
+//Server static assets in productions
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')),
+  );
+}
 
 app.listen(PORT, () => console.log(`Server started running on port ${PORT}`));
