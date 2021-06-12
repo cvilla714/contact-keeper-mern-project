@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 import connectDB from './config/db.js';
 import path from 'path';
-// const __dirname = path.resolve();
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 import usersRoutes from './routes/users.js';
 import authRoutes from './routes/auth.js';
 import contactsRoutes from './routes/contacts.js';
