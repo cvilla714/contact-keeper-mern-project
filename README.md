@@ -16,7 +16,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://mighty-stream-12623.herokuapp.com/login)
+[Live Demo Link](https://mighty-stream-12623.herokuapp.com)
 
 ## Getting Started
 
