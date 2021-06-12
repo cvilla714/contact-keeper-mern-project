@@ -32,7 +32,6 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log('Logged in ');
     if (email === '' || password === '') {
       setAlert('Please fill in all fields', 'dange');
     } else {
@@ -55,9 +54,18 @@ const Login = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" value={password} onChange={onChange} />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+          />
         </div>
-        <input type="submit" value="Login" className="btn btn-primary btn-block" />
+        <input
+          type="submit"
+          value="Login"
+          className="btn btn-primary btn-block"
+        />
       </form>
     </div>
   );

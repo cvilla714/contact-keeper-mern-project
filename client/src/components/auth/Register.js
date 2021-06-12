@@ -39,7 +39,6 @@ const Register = (props) => {
     } else if (password !== confirmpassword) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      // console.log('Register submit');
       register({
         name,
         email,
@@ -64,7 +63,12 @@ const Register = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" value={password} onChange={onChange} />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="confirmpassword">Confirm Password</label>
@@ -75,7 +79,11 @@ const Register = (props) => {
             onChange={onChange}
           />
         </div>
-        <input type="submit" value="Register" className="btn btn-primary btn-block" />
+        <input
+          type="submit"
+          value="Register"
+          className="btn btn-primary btn-block"
+        />
       </form>
     </div>
   );

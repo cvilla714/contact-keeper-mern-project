@@ -44,21 +44,7 @@ const Navbar = ({ title, icon }) => {
       <h1>
         <i className={icon}>{title}</i>
       </h1>
-      <ul>
-        {isAuthenticated ? authLinks : guestLinks}
-        {/* <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li> */}
-        {/* <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li> */}
-      </ul>
+      <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
     </div>
   );
 };

@@ -1,19 +1,15 @@
 import express from 'express';
-// const express = require('express');
 const router = express.Router();
 import checkToken from '../middleware/auth.js';
 import User from '../models/User.js';
 import Contact from '../models/Contact.js';
 import { body, validationResult } from 'express-validator';
 
-//@route    GET api/contacts
-//@desc     GET all users contacts
-//@access   Private
 router.get('/', checkToken, async (req, res) => {
-  // res.send('Get all contacts');
-
   try {
-    const contacts = await Contact.find({ user: req.user.id }).sort({ date: -1 });
+    const contacts = await Contact.find({ user: req.user.id }).sort({
+      date: -1,
+    });
     res.json(contacts);
   } catch (error) {
     console.error(error.message);
@@ -21,14 +17,10 @@ router.get('/', checkToken, async (req, res) => {
   }
 });
 
-//@route    POST api/contacts
-//@desc     ADD new contact
-//@access   Private
 router.post(
   '/',
   [checkToken, [body('name', 'Name is required').not().isEmpty()]],
   async (req, res) => {
-    // res.send('Add contact');
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -52,14 +44,10 @@ router.post(
       console.error(error.message);
       res.status(500).send('Server error');
     }
-  }
+  },
 );
 
-//@route    PUt api/contacts/:id
-//@desc     Update contact
-//@access   Private
 router.put('/:id', checkToken, async (req, res) => {
-  // res.send('Update contact');
   const { name, email, phone, type } = req.body;
 
   // Build contact object
@@ -82,7 +70,7 @@ router.put('/:id', checkToken, async (req, res) => {
     contact = await Contact.findByIdAndUpdate(
       req.params.id,
       { $set: contactFields },
-      { new: true }
+      { new: true },
     );
     res.json(contact);
   } catch (error) {
@@ -91,11 +79,7 @@ router.put('/:id', checkToken, async (req, res) => {
   }
 });
 
-//@route    DELETE api/:id
-//@desc     Delete contact
-//@access   Private
 router.delete('/:id', checkToken, async (req, res) => {
-  // res.send('Delete contact');
   try {
     let contact = await Contact.findById(req.params.id);
 
@@ -106,11 +90,6 @@ router.delete('/:id', checkToken, async (req, res) => {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    // contact = await Contact.findByIdAndUpdate(
-    //   req.params.id,
-    //   { $set: contactFields },
-    //   { new: true }
-    // );
     await Contact.findByIdAndRemove(req.params.id);
 
     res.json({ msg: 'Contact Removed' });
@@ -121,4 +100,3 @@ router.delete('/:id', checkToken, async (req, res) => {
 });
 
 export default router;
-// module.exports = router;

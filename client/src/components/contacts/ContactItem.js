@@ -10,14 +10,9 @@ const ContactItem = ({ contact }) => {
   const { _id, name, email, phone, type } = contact;
 
   const onDelete = () => {
-    // contactContext.deleteContact(contact.id);
     deleteContact(_id);
     clearCurrent();
   };
-
-  // const setCurrentContact = () => {
-  //   setCurrent(contact);
-  // };
 
   return (
     <div className="card bg-light">
@@ -48,7 +43,6 @@ const ContactItem = ({ contact }) => {
         )}
       </ul>
       <p>
-        {/* <button className="btn-dark btn sm" onClick={setCurrentContact}> */}
         <button className="btn-dark btn sm" onClick={() => setCurrent(contact)}>
           Edit
         </button>

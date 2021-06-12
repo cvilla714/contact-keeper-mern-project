@@ -1,5 +1,4 @@
 import express from 'express';
-// const express = require('express');
 const router = express.Router();
 import User from '../models/User.js';
 import checkToken from '../middleware/auth.js';
@@ -11,11 +10,7 @@ import dotenv from 'dotenv';
 const lb = dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
 
-//@route    GET api/auth
-//@desc     Get logged in user
-//@access   Private  because you need authentication
 router.get('/', checkToken, async (req, res) => {
-  // res.send('Get logged in user');
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
@@ -25,9 +20,6 @@ router.get('/', checkToken, async (req, res) => {
   }
 });
 
-//@route    POST api/auth
-//@desc     Auth user & get token
-//@access   Publick
 router.post(
   '/',
   [
@@ -35,7 +27,6 @@ router.post(
     body('password', 'Password is required').exists(),
   ],
   async (req, res) => {
-    // res.send('Get logged in user');
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -69,14 +60,13 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.json({ token });
-        }
+        },
       );
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 export default router;
-// module.exports = router;
