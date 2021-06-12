@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-// import { v4 as uuidv4 } from 'uuid';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
@@ -41,7 +40,6 @@ const ContactState = (props) => {
 
   // Add Contact
   const addContact = async (contact) => {
-    // contact.id = uuidv4();
     const config = {
       headers: {
         'Content-Type': 'application/json',
